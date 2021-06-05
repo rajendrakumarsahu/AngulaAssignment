@@ -1,1 +1,38 @@
-<p>user-details works!</p>
+<h2 mat-dialog-title>{{userDetails.name}}</h2>
+
+<mat-dialog-content>
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h2></h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-grid-list cols="2" rowHeight="1:1">
+        <mat-grid-tile>
+          <mat-list role="list">
+            <mat-list-item role="listitem">Email Address :</mat-list-item>
+            <mat-list-item role="listitem">Postal Address:</mat-list-item>
+            <mat-list-item role="listitem">Phone Number :</mat-list-item>
+            <mat-list-item role="listitem">Favourite Band :</mat-list-item>
+          </mat-list>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-list role="list">
+          <mat-list-item role="listitem">{{userDetails.emailAddress}}</mat-list-item>
+          <mat-list-item role="listitem">{{userDetails.postalAddress}}</mat-list-item>
+          <mat-list-item role="listitem">{{userDetails.phoneNumber}}</mat-list-item>
+          <mat-list-item role="listitem">{{userDetails.FavouriteBand}}</mat-list-item>
+          </mat-list>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+    </mat-card-content>
+
+  </mat-card>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+</mat-dialog-actions>

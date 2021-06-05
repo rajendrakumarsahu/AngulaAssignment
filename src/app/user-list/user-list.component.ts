@@ -1,9 +1,12 @@
 import {HttpClient} from '@angular/common/http';
-import {Component, ViewChild, AfterViewInit, OnInit} from '@angular/core';
+import { OnInit } from '@angular/core';
+import {Component, ViewChild, AfterViewInit} from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, SortDirection} from '@angular/material/sort';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import { UserDetailsComponent } from '../user-details/user-details.component';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -21,9 +24,8 @@ export class UserListComponent implements OnInit , AfterViewInit {
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
-  @ViewChild(MatSort)
-  sort!: MatSort;
-  constructor(private http: HttpClient) { }
+  @ViewChild(MatSort) sort: MatSort = new MatSort;
+  constructor(private http: HttpClient,private matDialog: MatDialog) { }
   ngOnInit(): void {
     
     this.getJSON().subscribe(data => {
@@ -36,6 +38,14 @@ export class UserListComponent implements OnInit , AfterViewInit {
   getJSON(): Observable<any> {
     return this.http.get(this._jsonURL, {headers:{skip:"true"}});
   }
+  openDialog(row: any) {
+    console.log("***********:::"+row.emailAddress);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '650px';
+    dialogConfig.data = { udetails: row};
+    this.matDialog.open(UserDetailsComponent, dialogConfig);
+  }
+  
   ngAfterViewInit() {
    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
