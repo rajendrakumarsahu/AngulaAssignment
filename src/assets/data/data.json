@@ -10,14 +10,44 @@
         "FavouriteBand": "Teh hood"
     },
     {
-        "name": "Rajendra kumar sahu",
+        "name": "Santosh kumar sahu",
         "accountNumber": "333-5555",
         "country": "India",
         "dob": "21 Feb 2021",
-        "emailAddress": "rksahu.sahu@gmail.com",
-        "postalAddress": "george@hotmail.com",
+        "emailAddress": "Santosh.sahu@gmail.com",
+        "postalAddress": "Santosh@hotmail.com",
         "phoneNumber": "9192776876",
+        "FavouriteBand": "No Teh hood"
+    },
+    {
+        "name": "Prakash ch sahu",
+        "accountNumber": "333-5555",
+        "country": "India",
+        "dob": "21 Feb 2021",
+        "emailAddress": "Prakash.sahu@gmail.com",
+        "postalAddress": "Prakash@hotmail.com",
+        "phoneNumber": "9192776000",
         "FavouriteBand": "Teh hood"
+    },
+    {
+        "name": "Sobhana kumari sahu",
+        "accountNumber": "333-5555",
+        "country": "India",
+        "dob": "21 Feb 2021",
+        "emailAddress": "Sobhana.sahu@gmail.com",
+        "postalAddress": "Sobhana@hotmail.com",
+        "phoneNumber": "9192779999",
+        "FavouriteBand": "MCO"
+    },
+    {
+        "name": "Schiff Brian",
+        "accountNumber": "333-5555",
+        "country": "India",
+        "dob": "21 Feb 2021",
+        "emailAddress": "Schiff.Schiff@gmail.com",
+        "postalAddress": "Schiff@hotmail.com",
+        "phoneNumber": "9192776876",
+        "FavouriteBand": "Schiff hood"
     },
     {
         "name": "Rajendra kumar sahu",
@@ -30,44 +60,14 @@
         "FavouriteBand": "Teh hood"
     },
     {
-        "name": "Rajendra kumar sahu",
+        "name": "Garrey Kumble",
         "accountNumber": "333-5555",
         "country": "India",
         "dob": "21 Feb 2021",
-        "emailAddress": "rksahu.sahu@gmail.com",
-        "postalAddress": "george@hotmail.com",
+        "emailAddress": "Garrey.Garrey@gmail.com",
+        "postalAddress": "Garrey@hotmail.com",
         "phoneNumber": "9192776876",
-        "FavouriteBand": "Teh hood"
-    },
-    {
-        "name": "Rajendra kumar sahu",
-        "accountNumber": "333-5555",
-        "country": "India",
-        "dob": "21 Feb 2021",
-        "emailAddress": "rksahu.sahu@gmail.com",
-        "postalAddress": "george@hotmail.com",
-        "phoneNumber": "9192776876",
-        "FavouriteBand": "Teh hood"
-    },
-    {
-        "name": "Rajendra kumar sahu",
-        "accountNumber": "333-5555",
-        "country": "India",
-        "dob": "21 Feb 2021",
-        "emailAddress": "rksahu.sahu@gmail.com",
-        "postalAddress": "george@hotmail.com",
-        "phoneNumber": "9192776876",
-        "FavouriteBand": "Teh hood"
-    },
-    {
-        "name": "Rajendra kumar sahu",
-        "accountNumber": "333-5555",
-        "country": "India",
-        "dob": "21 Feb 2021",
-        "emailAddress": "rksahu.sahu@gmail.com",
-        "postalAddress": "george@hotmail.com",
-        "phoneNumber": "9192776876",
-        "FavouriteBand": "Teh hood"
+        "FavouriteBand": "Garrey hood"
     },
     {
         "name": "Rajendra kumar sahu",
