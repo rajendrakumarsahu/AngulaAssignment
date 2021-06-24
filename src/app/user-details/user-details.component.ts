@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user-details',
@@ -7,16 +7,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
-  userDetails: any;
-  constructor(public dialogRef: MatDialogRef<UserDetailsComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { 
-    this.userDetails = data.udetails;
-    console.log("****in dialog:::", this.userDetails.emailAddress);
-  }
-
+  @Input() user: any;
+  constructor(public activeModal: NgbActiveModal) { }
   ngOnInit(): void {
-    
-  }
-  close() {
-    this.dialogRef.close();
+    console.log("*******************:::",this.user);
   }
 }

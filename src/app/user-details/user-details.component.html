@@ -1,38 +1,27 @@
-<h2 mat-dialog-title>{{userDetails.name}}</h2>
-
-<mat-dialog-content>
-
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>
-        <h2></h2>
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-grid-list cols="2" rowHeight="1:1">
-        <mat-grid-tile>
-          <mat-list role="list">
-            <mat-list-item role="listitem">Email Address :</mat-list-item>
-            <mat-list-item role="listitem">Postal Address:</mat-list-item>
-            <mat-list-item role="listitem">Phone Number :</mat-list-item>
-            <mat-list-item role="listitem">Favourite Band :</mat-list-item>
-          </mat-list>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-list role="list">
-          <mat-list-item role="listitem">{{userDetails.emailAddress}}</mat-list-item>
-          <mat-list-item role="listitem">{{userDetails.postalAddress}}</mat-list-item>
-          <mat-list-item role="listitem">{{userDetails.phoneNumber}}</mat-list-item>
-          <mat-list-item role="listitem">{{userDetails.FavouriteBand}}</mat-list-item>
-          </mat-list>
-        </mat-grid-tile>
-
-      </mat-grid-list>
-    </mat-card-content>
-
-  </mat-card>
-</mat-dialog-content>
-
-<mat-dialog-actions>
-  <button class="mat-raised-button" (click)="close()">Close</button>
-</mat-dialog-actions>
+<div class="modal-header">
+  <h2 class="modal-title">{{user.name}}</h2>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col" >Email Address :</div>
+    <div class="col" >{{user.emailAddress}}</div>
+  </div>
+  <div class="row">
+    <div class="col" >Postal Address:</div>
+    <div class="col" >{{user.postalAddress}}</div>
+  </div>
+  <div class="row">
+    <div class="col" >Phone Number :</div>
+    <div class="col" >{{user.phoneNumber}}</div>
+  </div>
+  <div class="row">
+    <div class="col" >Favourite Band :</div>
+    <div class="col" >{{user.FavouriteBand}}</div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

@@ -1,46 +1,38 @@
-<div class="example-container mat-elevation-z8">
-    <div class="example-loading-shade"
-         *ngIf="isLoadingResults || isRateLimitReached">
-      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-      <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-        GitHub's API rate limit has been reached. It will be reset in one minute.
-      </div>
-    </div>
+<div class="container">
   
-    <div class="example-table-container">
-        <table mat-table [dataSource]="data" class="example-table"
-             matSort matSortActive="name" matSortDisableClear matSortDirection="desc">
-        <!-- Number Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let row">{{row.name}}</td>
-        </ng-container>
-  
-        <!-- Title Column -->
-        <ng-container matColumnDef="accountNumber">
-          <th mat-header-cell *matHeaderCellDef>Account Number</th>
-          <td mat-cell *matCellDef="let row">{{row.accountNumber}}</td>
-        </ng-container>
-  
-        <!-- State Column -->
-        <ng-container matColumnDef="country">
-          <th mat-header-cell *matHeaderCellDef>Country</th>
-          <td mat-cell *matCellDef="let row">{{row.country}}</td>
-        </ng-container>
-  
-        <!-- Created Column -->
-        <ng-container matColumnDef="dob">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
-            Date Joined
-          </th>
-          <td mat-cell *matCellDef="let row">{{row.dob | date}}</td>
-        </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialog(row)"></tr>
-      </table>
-    </div>
-  
-    <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
-  </div>
-  
+  <table class="table table-bordered table-hover">
+    <caption><h2>User Information</h2></caption>
+    <thead>
+      <tr>
+        <th> <input type="checkbox" [checked]="myVar1" (change)="myVar1 = !myVar1" /></th>
+        <th>Name</th>
+        <th>Account Number</th>
+        <th>country</th>
+        <th>Date Joined</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users  | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize" (click)="openPopup(user)">
+        <td> <input type="checkbox" [checked]="myVar1" (change)="myVar1 = !myVar1" /></td>
+        <td>{{user.name}}</td>
+        <td>{{user.accountNumber}}</td>
+        <td>{{user.country}}</td>
+        <td>{{user.dob}}</td>
+      </tr>
+     
+    </tbody>
+  </table>
+  <ul class="pagination justify-content-end">
+    <li class="page-item margin-top-right">Rows per page :</li>
+    <li class="page-item" ><a class="page-link" href="javascript:void(0);">Previous</a></li>
+    <li class="page-item" (click)="updatePageSize(5)"  [ngClass]="{ 'active': pageSize == 5}"
+    *ngIf="collectionSize > 5"><a class="page-link" href="javascript:void(0);">5</a></li>
+    <li class="page-item" (click)="updatePageSize(10)"  [ngClass]="{ 'active': pageSize == 10}"
+    *ngIf="collectionSize > 10"><a class="page-link" href="javascript:void(0);">10</a></li>
+    <li class="page-item" (click)="updatePageSize(25)"  [ngClass]="{ 'active': pageSize == 25}"
+    *ngIf="collectionSize > 25"><a class="page-link" href="javascript:void(0);">25</a></li>
+    <li class="page-item" (click)="updatePageSize(50)"  [ngClass]="{ 'active': pageSize == 50}"
+    *ngIf="collectionSize > 50"><a class="page-link" href="javascript:void(0);">50</a></li>
+    <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
+  </ul>
+</div>

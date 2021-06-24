@@ -1,77 +1,70 @@
 import {HttpClient} from '@angular/common/http';
 import { OnInit } from '@angular/core';
-import {Component, ViewChild, AfterViewInit} from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort, SortDirection} from '@angular/material/sort';
-import {merge, Observable, of as observableOf} from 'rxjs';
-import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import {Component} from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {Observable} from 'rxjs';
 import { UserDetailsComponent } from '../user-details/user-details.component';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
-export class UserListComponent implements OnInit , AfterViewInit {
+export class UserListComponent implements OnInit {
+ 
   private _jsonURL = './assets/data/data.json';
   //data:any;
-  displayedColumns: string[] = ['name', 'accountNumber', 'country', 'dob'];
-  data: users[] = [];
-
-  resultsLength = 0;
-  isLoadingResults = true;
-  isRateLimitReached = false;
-
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort = new MatSort;
-  constructor(private http: HttpClient,private matDialog: MatDialog) { }
+  myVar1 = false;
+  users: users[] = [];
+  page: number;
+  pageSize: number;
+  collectionSize: number = 0;
+  maxSize: number;
+  pageChange: number;
+  articlesCount: number = 0;
+  constructor(private http: HttpClient,public modalService: NgbModal) {
+    this.page = 1;
+    this.pageSize = 5;
+    this.maxSize = 2;
+    this.pageChange = 1;
+   }
   ngOnInit(): void {
     
     this.getJSON().subscribe(data => {
-      this.data = data;
-      console.log(this.data);
+      if (data !== null && data !== undefined) {
+        this.users = data;
+        this.collectionSize = data.length;
+        console.log(this.users);
+      }else{
+        this.collectionSize = 0;
+      }
+     
     }, error => {
       console.log(error);
     });
+    
   }
   getJSON(): Observable<any> {
     return this.http.get(this._jsonURL, {headers:{skip:"true"}});
   }
-  openDialog(row: any) {
-    console.log("***********:::"+row.emailAddress);
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '650px';
-    dialogConfig.data = { udetails: row};
-    this.matDialog.open(UserDetailsComponent, dialogConfig);
+  updatePageSize(pageSize: number) {
+    this.pageSize = pageSize;
+    this.page = 1;
+    this.maxSize = 2;
+  }
+  NextPageSize(pageSize: number) {
+    this.pageSize = pageSize;
+    this.page = 1;
+    this.maxSize = 2;
+  }
+  PreviewPageSize(pageSize: number) {
+    this.pageSize = pageSize;
+    this.page = 1;
+    this.maxSize = 2;
   }
   
-  ngAfterViewInit() {
-   this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          this.isLoadingResults = true;
-          return this.getJSON().pipe(catchError(() => observableOf(null)));
-        }),
-        map(data => {
-          // Flip flag to show that loading has finished.
-          this.isLoadingResults = false;
-          this.isRateLimitReached = data === null;
-
-          if (data === null) {
-            return [];
-          }
-
-          // Only refresh the result length if there is new data. In case of rate
-          // limit errors, we do not want to reset the paginator to zero, as that
-          // would prevent users from re-triggering requests.
-          this.resultsLength = data.total_count;
-          return data.items;
-        })
-      ).subscribe(data => this.data = data);
+  openPopup(user:users) {
+    const modalRef = this.modalService.open(UserDetailsComponent);
+    modalRef.componentInstance.user = user;
   }
 }
 export interface GithubApi {
@@ -89,3 +82,5 @@ export interface users {
   phoneNumber: string;
   FavouriteBand: string;
 }
+
+
